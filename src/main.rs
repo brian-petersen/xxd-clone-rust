@@ -16,7 +16,7 @@ fn main() {
         print!("{:0>width$x}: ", line, width = LINE_WIDTH);
         line += CHUNK_SIZE;
 
-        for group_chunk in &line_chunk.filter_map(|x| x.ok()).chunks(GROUP_SIZE) {
+        for group_chunk in &line_chunk.map(|x| x.unwrap()).chunks(GROUP_SIZE) {
             for byte in group_chunk {
                 // Each byte is printed as a two character hex
                 print!("{:0>width$x}", byte, width = 2);
